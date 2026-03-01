@@ -1,7 +1,6 @@
 name: Sanity Check
 
-on:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   sanity-check:
@@ -11,7 +10,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24.x" # Or your desired Node.js version
-      - run: npm install
+      - run: npm ci
       - run: npm test
       - run: npm run lint
       - run: npm run build
