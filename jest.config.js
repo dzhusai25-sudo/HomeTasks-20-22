@@ -3,12 +3,12 @@
  * @type {import('jest').Config}
  */
 const config = {
-  testEnvironment: 'jsdom',
+  testEnvironment: "jsdom",
   clearMocks: true,
   collectCoverage: false,
-  coverageDirectory: 'coverage',
-  coverageReporters: ['html', 'text'],
-  coverageProvider: 'v8',
+  coverageDirectory: "coverage",
+  coverageReporters: ["html", "text"],
+  coverageProvider: "v8",
   coverageThreshold: {
     global: {
       branches: 60,
@@ -19,12 +19,12 @@ const config = {
   },
 
   moduleNameMapper: {
-    '\\.css$': '<rootDir>/__mocks__/styleMock.js',
+    "\\.css$": "<rootDir>/__mocks__/styleMock.js",
   },
 
-  collectCoverageFrom: ['src/**/*.js', '!src/**/*.test.js', '!src/**/index.js'],
+  collectCoverageFrom: ["src/**/*.js", "!src/**/*.test.js", "!src/**/index.js"],
 
-  transformIgnorePatterns: ['/node_modules/'],
+  transformIgnorePatterns: ["/node_modules/"],
 };
 
 module.exports = config;

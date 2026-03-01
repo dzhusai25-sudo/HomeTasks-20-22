@@ -1,14 +1,7 @@
-import './runApp.css';
+import "./runApp.css";
 
 export function runApp(el) {
-
-
-
-
-
-
-                        el.innerHTML = `
+  el.innerHTML = `
     <h1>Hello world!</h1>
-  `
-  
+  `;
 }
