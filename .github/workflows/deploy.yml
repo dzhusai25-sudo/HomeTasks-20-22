@@ -1,0 +1,22 @@
+name: Deploy to Github Pages
+
+on:
+  pull_request:
+
+jobs:
+  deploy:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.x' # Or your desired Node.js version
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.github_token }}
+          publish_dir: ./dist
