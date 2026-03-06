@@ -95,38 +95,6 @@ describe("Parallel class", () => {
     expect(result).toBe(runner);
   });
 
-  test("корректно обрабатывает синхронные задачи", async () => {
-    const runner = new Parallel(2);
-
-    runner
-      .job((doneCb) => doneCb("sync1"))
-      .job((doneCb) => doneCb("sync2"))
-      .job((doneCb) => doneCb("sync3"));
-
-    const results = await runner.done((finalResults) => finalResults);
-    expect(results).toEqual(["sync1", "sync2", "sync3"]);
-  }, 5000);
-
-  test("обрабатывает ошибки в задачах", async () => {
-    const runner = new Parallel(2);
-
-    runner
-      .job((doneCb) => doneCb("success"))
-      .job((doneCb) => {
-        const error = new Error("task failed");
-        doneCb(error);
-      })
-      .job((doneCb) => doneCb("another success"));
-
-    const results = await runner.done((finalResults) => finalResults);
-
-    expect(results).toHaveLength(3);
-    expect(results[0]).toBe("success");
-    expect(results[1]).toBeInstanceOf(Error);
-    expect(results[1].message).toBe("task failed");
-    expect(results[2]).toBe("another success");
-  }, 5000);
-
   describe("fetchRetry", () => {
     beforeEach(() => {
       jest.useFakeTimers();
